@@ -45,6 +45,9 @@ serve(async (req) => {
           urls,
           highlights: {
             query: "extract - key features, USPs, Pricing, target audience, integrations"
+          },
+          summary: {
+            query: "Provide a concise summary capturing the main essence of the webpage content."
           }
         }),
       },

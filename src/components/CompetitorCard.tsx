@@ -222,6 +222,17 @@ export default function CompetitorCard({ competitor }: CompetitorCardProps) {
           </DialogHeader>
           
           <div className="overflow-y-auto flex-1 pr-2 custom-scrollbar">
+            {/* Summary Section */}
+            {expandedContent?.summary && (
+              <div className="p-4 border-b border-gray-800">
+                <h3 className="text-lg font-semibold text-blue-300 mb-3">Summary</h3>
+                <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                  <p className="text-gray-200 leading-relaxed">{expandedContent.summary}</p>
+                </div>
+              </div>
+            )}
+            
+            {/* Highlights Section */}
             {expandedContent?.highlights && expandedContent.highlights.length > 0 ? (
               <div className="space-y-4 p-4">
                 <h3 className="text-lg font-semibold text-blue-300 mb-2">Key Highlights</h3>
@@ -239,18 +250,16 @@ export default function CompetitorCard({ competitor }: CompetitorCardProps) {
                   ))}
                 </ul>
               </div>
-            ) : expandedContent?.summary ? (
-              <p className="text-gray-300 p-4">{expandedContent.summary}</p>
-            ) : (
+            ) : !expandedContent?.summary ? (
               <div className="flex items-center justify-center p-8 text-blue-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <line x1="12" y1="8" x2="12" y2="12"></line>
                   <line x1="12" y1="16" x2="12.01" y2="16"></line>
                 </svg>
-                No highlights available.
+                No content available.
               </div>
-            )}
+            ) : null}
           </div>
           
           <div className="mt-4 pt-3 border-t border-gray-800 flex justify-between items-center">
