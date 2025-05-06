@@ -178,7 +178,7 @@ export default function LandingPage() {
         </div>
 
         {/* Results Section */}
-        <div className="max-w-5xl mx-auto">
+        <div className="w-full">
           <ResultsSection results={results} isLoading={isLoading} />
         </div>
       </div>
