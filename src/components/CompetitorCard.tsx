@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { createClient } from "@supabase/supabase-js";
-import ReactMarkdown from "react-markdown";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 type CompetitorCardProps = {
@@ -223,12 +222,25 @@ export default function CompetitorCard({ competitor }: CompetitorCardProps) {
           </DialogHeader>
           
           <div className="overflow-y-auto flex-1 pr-2 custom-scrollbar">
-            {expandedContent?.text ? (
-              <div className="whitespace-pre-wrap text-gray-300 p-4 bg-gray-800/50 rounded-lg">
-                {expandedContent.text}
+            {expandedContent?.highlights && expandedContent.highlights.length > 0 ? (
+              <div className="space-y-4 p-4">
+                <h3 className="text-lg font-semibold text-blue-300 mb-2">Key Highlights</h3>
+                <ul className="space-y-3">
+                  {expandedContent.highlights.map((highlight, index) => (
+                    <li key={index} className="p-3 bg-gray-800/70 rounded-lg border border-gray-700 flex">
+                      <div className="mr-3 mt-0.5 text-blue-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                      <span className="text-gray-200">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ) : expandedContent?.summary ? (
-              <p className="text-gray-300">{expandedContent.summary}</p>
+              <p className="text-gray-300 p-4">{expandedContent.summary}</p>
             ) : (
               <div className="flex items-center justify-center p-8 text-blue-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
@@ -236,7 +248,7 @@ export default function CompetitorCard({ competitor }: CompetitorCardProps) {
                   <line x1="12" y1="8" x2="12" y2="12"></line>
                   <line x1="12" y1="16" x2="12.01" y2="16"></line>
                 </svg>
-                No detailed content available.
+                No highlights available.
               </div>
             )}
           </div>

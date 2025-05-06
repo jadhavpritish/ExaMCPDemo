@@ -41,7 +41,12 @@ serve(async (req) => {
           "x-pica-action-id":
             "conn_mod_def::GCMYl3sMiIk::SC1A2LyQQIOebf7SfkwL8g",
         },
-        body: JSON.stringify({ urls }),
+        body: JSON.stringify({ 
+          urls,
+          highlights: {
+            query: "extract - key features, USPs, Pricing, target audience, integrations"
+          }
+        }),
       },
     );
 
